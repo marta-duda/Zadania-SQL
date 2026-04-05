@@ -1,0 +1,70 @@
+CREATE DATABASE School_Coding;
+
+USE School_Coding;
+
+CREATE TABLE Mentors (
+ID INTEGER PRIMARY KEY,
+Imie TEXT NOT NULL,
+Nazwisko TEXT NOT NULL,
+Specjalizacja TEXT,
+`Data_zatrudnienia` DATE,
+`Data_Zwolnienia`DATE
+);
+
+INSERT INTO Mentors (ID,Imie,Nazwisko,Specjalizacja,`Data_zatrudnienia`,`Data_Zwolnienia`)
+VALUES
+(1,'Jan','Kowalski','Python','2022-04-01','2026-03-31'),
+(2,'Adam','Nowak','Javascript','2020-02-10','2025-06-30'),
+(3,'Piotr','Gruszka','HTML','2021-10-06','2026-03-31'),
+(4,'Jerzy','Jablko','PHP','2022-06-01','2025-06-30'),
+(5,'Celina','Pietruszka','SQL','2020-11-03','2026-03-31'),
+(6,'Paweł','Marchewka','Python','2025-01-20','2025-12-31'),
+(7,'Gaweł','Szyszka','C++','2010-03-21','2025-12-31'),
+(8,'Daria','Orzeszek','HTML','2018-09-30','2025-12-31'),
+(9,'Anna','Cebula','SQL','2024-08-01','2025-12-31'),
+(10,'Stefan','Papryka','C++','2022-04-01','2025-06-30');
+
+SELECT * FROM Mentors;
+
+UPDATE Mentors
+SET `Nazwisko`='Pasternak'
+WHERE ID=5;
+
+SELECT *
+FROM Mentors
+WHERE ID=5;
+
+UPDATE Mentors
+SET `Specjalizacja`='Python'
+WHERE ID=9;
+
+SELECT *
+FROM Mentors
+WHERE ID=9;
+
+ALTER TABLE Mentors
+ADD COLUMN `Wynagrodzenie` INTEGER;
+
+UPDATE Mentors
+SET `Wynagrodzenie`=1000
+WHERE `ID`=1;
+
+UPDATE Mentors
+SET `Wynagrodzenie`=1000
+WHERE `ID`=2;
+
+UPDATE Mentors
+SET `Wynagrodzenie`=1000
+WHERE `ID`=3;
+
+SELECT *
+FROM Mentors
+WHERE ID=1;
+
+SELECT *
+FROM Mentors
+WHERE ID=2;
+
+SELECT *
+FROM Mentors
+WHERE ID=3;
