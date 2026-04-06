@@ -1,0 +1,39 @@
+DROP DATABASE IF EXISTS Moje_zainteresowania;
+CREATE DATABASE Moje_zainteresowania;
+
+USE Moje_zainteresowania;
+
+SET autocommit=1; 
+
+CREATE TABLE Zainteresowania (
+ID INTEGER PRIMARY KEY AUTO_INCREMENT,
+NAZWA TEXT NOT NULL,
+OPIS TEXT NOT NULL,
+DATA_REALIZACJI DATE);
+
+INSERT INTO Zainteresowania (NAZWA,OPIS)
+VALUES 
+('RYSUNEK','PORTRETY'),
+('TANIEC','SAMBA'),
+('WROTKI','WYCZYNOWE'),
+('KUCHNIA','SUSHI'),
+('PLYWANIE','KRAUL');
+
+INSERT INTO Zainteresowania (NAZWA,OPIS,DATA_REALIZACJI)
+VALUES 
+('SZACHY','KLUB','2026-04-11');
+
+SELECT * FROM Zainteresowania;
+-- ID ustawiło się automatycznie, DATA_REALIZACJI pokazuje NULL dla ID od 1 do 5
+
+UPDATE Zainteresowania
+SET DATA_REALIZACJI='2026-04-09'
+WHERE ID=4;
+
+SELECT * FROM Zainteresowania;
+
+DELETE FROM Zainteresowania 
+WHERE DATA_REALIZACJI IS NULL;
+COMMIT;
+
+SELECT * FROM Zainteresowania;
