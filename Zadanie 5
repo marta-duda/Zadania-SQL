@@ -3,8 +3,6 @@ CREATE DATABASE Moje_zainteresowania;
 
 USE Moje_zainteresowania;
 
-SET autocommit=1; 
-
 CREATE TABLE Zainteresowania (
 ID INTEGER PRIMARY KEY AUTO_INCREMENT,
 NAZWA TEXT NOT NULL,
@@ -34,6 +32,5 @@ SELECT * FROM Zainteresowania;
 
 DELETE FROM Zainteresowania 
 WHERE DATA_REALIZACJI IS NULL;
-COMMIT;
 
 SELECT * FROM Zainteresowania;
