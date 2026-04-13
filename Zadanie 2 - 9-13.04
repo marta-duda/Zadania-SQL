@@ -1,0 +1,54 @@
+CREATE DATABASE Pracownicy;
+
+USE Pracownicy;
+
+CREATE TABLE Pracownicy (
+ID INTEGER AUTO_INCREMENT PRIMARY KEY,
+IMIE VARCHAR(50),
+NAZWISKO VARCHAR(50),
+WIEK INTEGER,
+KURS VARCHAR(50));
+
+INSERT INTO Pracownicy (IMIE,NAZWISKO,WIEK,KURS)
+VALUES 
+('Anna','NOWAK',34,'DS'),
+('Roman','KOWALSKI',42,'DS'),
+('Tomasz','WISNIEWSKI',33,'DS'),
+('Agata','WOJCIK',43,'DS'),
+('Elzbieta','KOWALCZYK',28,'Java'),
+('Przemyslaw',NULL,34,'Java'),
+('Robert',NULL,35,'Java'),
+('Radoslaw','ZIELINSKI',38,'Java'),
+(NULL,'WOZNIAK',26,'Java'),
+('Robert','SZYMANSKI',34,'Java'),
+('Radoslaw','DABROWSKI',35,NULL),
+('Robert','KOZLOWSKI',NULL,'UX'),
+('Joanna','MAZUR',26,'UX'),
+('Radoslaw','JANKOWSKI',27,'UX'),
+('Patryk','LEWANDOWSKI',28,'Tester'),
+(NULL,'ZIELINSKI',28,'Tester'),
+('Andrzej','WOZNIAK',31,'Tester'),
+('Andrze','LEWANDOWSKI',30,'Tester'),
+('Roman',NULL,39,'Tester'),
+('Ewa','WOZNIAK',31,'Tester');
+
+SELECT * FROM Pracownicy
+WHERE WIEK=28;
+
+SELECT * FROM Pracownicy
+WHERE WIEK <=30;
+
+SELECT * FROM Pracownicy
+WHERE NAZWISKO LIKE '%SKI';
+
+SELECT * FROM Pracownicy
+WHERE ID IN (1,4,7,18,20);
+
+SELECT * FROM Pracownicy
+WHERE IMIE IS NOT NULL
+AND NAZWISKO IS NOT NULL
+AND WIEK IS NOT NULL
+AND KURS IS NOT NULL;
+
+SELECT * FROM Pracownicy
+WHERE KURS <> 'DS' OR KURS IS NULL;
