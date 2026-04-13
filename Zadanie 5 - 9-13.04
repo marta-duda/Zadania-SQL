@@ -1,0 +1,51 @@
+DROP DATABASE IF EXISTS Pracownicy;
+
+CREATE DATABASE Pracownicy;
+
+USE Pracownicy;
+ 
+CREATE TABLE Pracownicy (
+ID INTEGER AUTO_INCREMENT PRIMARY KEY,
+IMIE VARCHAR(50),
+NAZWISKO VARCHAR(50),  
+WIEK INTEGER,
+KURS VARCHAR(50)); 
+
+INSERT INTO Pracownicy (IMIE,NAZWISKO,WIEK,KURS)
+VALUES
+('Anna','NOWAK',34,'DS.'),
+('Roman','KOWALSKI',35,'DS.'),
+('Tomasz','WIŚNIEWSKI',36,'DS.'),
+('Anna',NULL,37,'DS.'),
+('Elżbieta','KOWALCZYK',38,'Tester'),
+('Anna','KOWALCZYK',39,'Java'),
+('Robert','KOWALCZYK',40,'Java'),
+('Radosław','ZIELIŃSKI',41,'Java'),
+('Robert','WOŹNIAK',42,'Java'),
+('Robert','SZYMAŃSKI',43,'Tester'),
+('Radosław','DĄBROWSKI',44,NULL),
+('Robert','KOZŁOWSKI',45,'UX'),
+('Joanna','MAZUR',46,'UX'),
+('Radosław','JANKOWSKI',47,'UX'),
+('Patryk','LEWANDOWSKI',48,NULL),
+(NULL,'ZIELIŃSKI',49,NULL),
+('Andrzej','WOŹNIAK',50,NULL),
+('Andrze','LEWANDOWSKI',51,NULL),
+('Roman','KOWALCZYK',52,NULL),
+('Ewa','WOŹNIAK',53,NULL);
+
+SELECT DISTINCT IMIE FROM Pracownicy;
+
+SELECT DISTINCT NAZWISKO FROM Pracownicy;
+
+SELECT * FROM Pracownicy
+WHERE NAZWISKO='Kowalczyk';
+
+SELECT * FROM Pracownicy
+WHERE WIEK IS NULL;
+
+SELECT WIEK FROM Pracownicy
+WHERE IMIE='Patryk';
+
+ALTER TABLE Pracownicy
+RENAME TO Mentorzy;
