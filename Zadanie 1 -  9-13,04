@@ -1,0 +1,53 @@
+CREATE DATABASE Pracownicy;
+USE Pracownicy;
+
+CREATE TABLE Pracownicy(
+ID INTEGER AUTO_INCREMENT PRIMARY KEY,
+IMIE TEXT NOT NULL, 
+NAZWISKO TEXT  NOT NULL,
+WIEK INTEGER, 
+KURS TEXT);
+
+INSERT INTO Pracownicy (IMIE,NAZWISKO,WIEK,KURS)
+VALUES
+('Anna','NOWAK','34','DS.'),
+('Roman','KOWALSKI','42','DS.'),
+('Tomasz','WISNIEWSKI','33','DS.'),
+('Agata ','WOJCIK','43','DS.'),
+('Elzbieta','KOWALCZYK','28','Java'),
+('Przemyslaw','KAMINSKI','34','Java'),
+('Robert','LEWANDOWSKI','35','Java'),
+('Radoslaw','ZIELINSKI','38','Java'),
+('Anna','WOZNIAK','26','Java'),
+('Robert','SZYMANSKI','34','Java'),
+('Radoslaw','DABROWSKI','35','UX'),
+('Robert','KOZLOWSKI','38','UX'),
+('Joanna','MAZUR','26','UX'),
+('Radoslaw','JANKOWSKI','27','UX'),
+('Patryk','LEWANDOWSKI','28','Tester'),
+('Patryk','ZIELINSKI','28','Tester'),
+('Andrzej','WOZNIAK','31','Tester'),
+('Andrzej','LEWANDOWSKI','30','Tester'),
+('Roman','ZIELINSKI','39','Tester'),
+('Ewa','WOZNIAK','31','Tester');
+
+SELECT * FROM Pracownicy 
+WHERE WIEK > 30;
+
+SELECT * FROM Pracownicy 
+WHERE WIEK < 30;
+
+SELECT * FROM Pracownicy
+WHERE NAZWISKO LIKE 'K%KI';
+
+ALTER TABLE pracownicy
+RENAME COLUMN ID TO NR;
+
+SELECT * FROM Pracownicy
+WHERE IMIE IS NULL
+OR NAZWISKO IS NULL
+OR WIEK IS NULL
+OR KURS IS NULL;
+
+SELECT * FROM Pracownicy
+WHERE KURS ='Java';
