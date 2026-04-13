@@ -1,0 +1,58 @@
+DROP DATABASE IF EXISTS Pracownicy;
+
+CREATE DATABASE Pracownicy;
+
+USE Pracownicy;
+
+CREATE TABLE Pracownicy (
+ID INTEGER AUTO_INCREMENT PRIMARY KEY,
+IMIE VARCHAR(50),
+NAZWISKO VARCHAR(50),
+WIEK INTEGER,
+KURS VARCHAR(50));
+
+INSERT INTO Pracownicy (IMIE,NAZWISKO,WIEK,KURS)
+VALUES
+('Anna','NOWAK',34,'DS'),
+('Roman','KOWALSKI',42,'DS'),
+('Tomasz','WIŚNIEWSKI',33,'DS'),
+('Agata ','WÓJCIK',43,'DS'),
+('Elżbieta','KOWALCZYK',28,'Java'),
+('Przemysław','KOWALCZYK',34,'Java'),
+('Robert','kOWALCZYK',35,'Java'),
+('Radosław','ZIELIŃSKI',38,'Java'),
+(NULL,'WOŹNIAK',26,'Java'),
+('Robert','SZYMAŃSKI',34,'Java'),
+('Radosław','DĄBROWSKI',35,NULL),
+('Robert','KOZŁOWSKI',NULL,'UX'),
+('Joanna','MAZUR',26,'UX'),
+('Radosław','JANKOWSKI',27,'UX'),
+('Patryk','LEWANDOWSKI',28,'Tester'),
+(NULL,'ZIELIŃSKI',28,'Tester'),
+('Andrzej','WOŹNIAK',31,'Tester'),
+('Andrze','LEWANDOWSKI',30,'Tester'),
+('Roman','KOWALCZYK',39,'Tester'),
+('Ewa','WOŹNIAK',31,'Tester');
+
+SELECT * FROM Pracownicy
+WHERE NAZWISKO LIKE 'KOWALCZYK';
+
+SELECT * FROM Pracownicy
+WHERE WIEK >= 30 AND WIEK <= 40;
+
+SELECT * FROM Pracownicy
+WHERE NAZWISKO NOT LIKE 'AND%'
+AND NAZWISKO NOT LIKE '%AND'
+AND NAZWISKO NOT LIKE '%AND%';
+
+SELECT * FROM Pracownicy
+WHERE ID IN (1,2,3,4,5,6,7);
+
+SELECT * FROM Pracownicy
+WHERE IMIE IS NULL
+OR NAZWISKO IS NULL
+OR WIEK IS NULL
+OR KURS IS NULL;
+
+SELECT * FROM Pracownicy
+WHERE KURS IS NULL;
