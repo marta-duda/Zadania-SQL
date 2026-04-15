@@ -1,0 +1,91 @@
+DROP DATABASE IF EXISTS aggregates;
+
+CREATE DATABASE aggregates;
+
+CREATE TABLE batman(
+  id INTEGER PRIMARY KEY,
+  first_name TEXT,
+  last_name TEXT,
+  sex CHAR(1),
+  age INTEGER,
+  price DOUBLE,
+  start_date DATE,
+  gift TEXT
+);
+INSERT INTO batman 
+VALUES 
+(1, 'Alicja', 'Rogal', 'F', 16, 100.25,'2020-01-02', 'rower' ),
+(2, 'Iwona', 'Kowalska', 'F', 33, 56.58, '2020-01-03', 'komputer'),
+(3, 'Igor', 'Kowalski', 'M', 50, 68.00, '2020-01-04', 'karty'),
+(4, 'Kamil', 'Juszczak', 'M', 50, 40.87, '2020-01-05', 'piłka'), 
+(5, 'Konrad', 'Kowal', 'M', 18, 32.63, '2020-01-06', 'herbata' ),
+(6, 'Iwona', 'Feniks', 'F', 35, 78.98, '2020-01-07', 'okno' ),
+(7, 'Robert', 'Lew', 'M', 40, 120.32, '2020-01-08', 'drzwi'),
+(8, 'Tomasz', 'Nowak', 'M', 60, 150.00, '2020-01-09', 'korona'),
+(9, 'Aldona', 'Buk', NULL, NULL, 121.25, '2020-01-10', 'wycieczka');
+
+-- Policz, ile jest rekordów w tabeli (po id).
+SELECT count(1) FROM batman;
+
+-- Policz, ile jest rekordów z wiekiem.
+SELECT COUNT(AGE) FROM batman;
+
+-- Ilu mężczyzn ma więcej niż 40 lat?
+SELECT COUNT(SEX) FROM batman
+WHERE AGE>40;
+
+-- Oblicz sumę wszystkich cen.
+SELECT SUM(PRICE) FROM batman;
+
+-- Oblicz łączny wiek kobiet.
+SELECT SUM(AGE) FROM batman
+WHERE SEX='F';
+
+-- Podaj łączną wartość komputera i okna.
+SELECT SUM(PRICE) FROM batman
+WHERE GIFT='komputer' OR GIFT='okno';
+
+-- Podaj maksymalną cenę.
+SELECT MAX(PRICE) FROM batman;
+
+-- Podaj najpóźniejszą datę. 
+SELECT MAX(START_DATE) FROM batman;
+
+--  Podaj nazwisko rozpoczynające się literą, która jest najbliżej końca alfabetu
+SELECT LAST_NAME FROM batman
+ORDER BY LAST_NAME DESC
+LIMIT 1;
+
+-- Podaj minimalną cenę.
+SELECT MIN(PRICE) FROM batman;
+
+-- Podaj najwcześniejszą datę.
+SELECT MIN(START_DATE) FROM batman;
+
+-- Podaj nazwisko rozpoczynające się literą, która jest najbliżej początku alfabetu.
+SELECT LAST_NAME FROM batman
+ORDER BY LAST_NAME
+LIMIT 1;
+
+-- Jednocześnie podaj cenę minimalną oraz maksymalną. Nadaj odpowiednie aliasy.
+SELECT MIN(PRICE), MAX(PRICE) FROM batman;
+
+-- Oblicz różnicę pomiędzy ceną maksymalną, a minimalną.
+SELECT (MAX(PRICE)-MIN(PRICE)) AS ROZNICA
+FROM batman;
+
+-- Oblicz średnią wieku.
+SELECT
+AVG(AGE) as AGE_AVERAGE
+FROM batman;
+
+-- Oblicz średnią wieku za pomocą COUNT oraz SUM.
+SELECT (SUM(AGE)/COUNT(*)) AS AGE_AVERAGE
+FROM batman;
+
+-- Oblicz średni wiek dla kobiet oraz średni wiek dla mężczyzn.
+SELECT AVG(AGE) AS WOMEN_AVG FROM batman
+WHERE SEX='F';
+
+SELECT AVG(AGE) AS MEN_AVG FROM batman
+WHERE SEX='M';
