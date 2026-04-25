@@ -1,0 +1,147 @@
+CREATE DATABASE Sklep_odziezowy;
+
+USE Sklep_odziezowy;
+
+CREATE TABLE Producenci(
+id_producenta INTEGER AUTO_INCREMENT PRIMARY KEY,
+nazwa_producenta VARCHAR(50) NOT NULL,
+adres_producenta VARCHAR(50) NOT NULL,
+nip_producenta VARCHAR(10) UNIQUE,
+data_podpisania_umowy DATE NOT NULL
+);
+
+CREATE TABLE Produkty(
+id_produktu INTEGER AUTO_INCREMENT PRIMARY KEY,
+id_producenta INTEGER NOT NULL,
+nazwa_produktu VARCHAR(50) NOT NULL,
+opis_produktu VARCHAR(150) NOT NULL,
+cena_netto_zakupu DECIMAL(10,2) NOT NULL,
+cena_brutto_zakupu DECIMAL(10,2) NOT NULL,
+cena_netto_sprzedazy DECIMAL(10,2) NOT NULL,
+cena_brutto_sprzedazy DECIMAL(10,2) NOT NULL,
+procent_VAT INTEGER NOT NULL,
+FOREIGN KEY (id_producenta) REFERENCES Producenci(id_producenta)
+);
+
+CREATE TABLE Klienci(
+id_klienta INTEGER auto_increment PRIMARY KEY,
+imie VARCHAR(50) NOT NULL,
+nazwisko VARCHAR(50) NOT NULL,
+adres VARCHAR(150) NOT NULL
+);
+
+CREATE TABLE Zamowienia(
+id_zamowienia INTEGER AUTO_INCREMENT PRIMARY KEY,
+id_klienta INTEGER NOT NULL,
+id_produktu INTEGER NOT NULL,
+data_zamowienia DATE NOT NULL,
+FOREIGN KEY (id_produktu) REFERENCES Produkty(id_produktu),
+FOREIGN KEY (id_klienta) REFERENCES Klienci(id_klienta)
+);
+
+INSERT INTO Producenci (nazwa_producenta,adres_producenta,nip_producenta ,data_podpisania_umowy)
+VALUES
+('SZMATEX', 'Wroclaw', '7834567890', '2022-03-15'),
+('Dzianina', 'Olesnica', '9231456782', '2021-07-01'),
+('Atelier Mody', 'Wroclaw', '7823345567', '2023-01-20'),
+('Moda z Niemiec', 'Olesnica', '7778899001', '2020-11-10');
+
+INSERT INTO Produkty (id_producenta,nazwa_produktu,opis_produktu,cena_netto_zakupu,cena_brutto_zakupu,cena_netto_sprzedazy,cena_brutto_sprzedazy,procent_VAT)
+VALUES
+(1,'T-shirt bialy', 'Bawelniany t-shirt meski', 20.00, 24.60, 35.00, 43.05, 23),
+(1, 'T-shirt czarny', 'Klasyczny t-shirt unisex', 20.00, 24.60, 35.00, 43.05, 23),
+(2, 'Bluza z kapturem', 'Bluza z kapturem i nadrukiem', 60.00, 73.80, 100.00, 123.00, 23),
+(2, 'Bluza rozpinana', 'Bluza na zamek blyskawiczny', 65.00, 79.95, 110.00, 135.30, 23),
+(3, 'Jeansy slim fit', 'Spodnie jeansowe dopasowane', 90.00, 110.70, 150.00, 184.50, 23),
+(3, 'Jeansy regular', 'Klasyczne jeansy meskie', 85.00, 104.55, 140.00, 172.20, 23),
+(4, 'Kurtka zimowa', 'Ocieplana kurtka z futrem na zime', 200.00, 246.00, 320.00, 393.60, 23),
+(4, 'Kurtka przejsciowa', 'Lekka kurtka wiosenna', 120.00, 147.60, 200.00, 246.00, 23),
+(1, 'Koszula elegancka', 'Koszula do garnituru', 70.00, 86.10, 120.00, 147.60, 23),
+(1, 'Bluza dresowa Khaki', 'Wygodna bluza do wszystkiego', 60.00, 73.80, 100.00, 123.00, 23),
+(2, 'Spodnie dresowe', 'Wygodne spodnie sportowe', 50.00, 61.50, 85.00, 104.55, 23),
+(2, 'Legginsy sportowe', 'Damskie legginsy treningowe', 40.00, 49.20, 70.00, 86.10, 23),
+(3, 'Sukienka letnia', 'Lekka sukienka na lato', 80.00, 98.40, 130.00, 159.90, 23),
+(3, 'Spodnica maxi', 'Elegancka spodnica damska', 60.00, 73.80, 100.00, 123.00, 23),
+(4, 'Sweter Kaszmir', 'Cieply sweter zimowy', 90.00, 110.70, 150.00, 184.50, 23),
+(4, 'Sweter cienki', 'Lekki sweter na wiosne', 70.00, 86.10, 120.00, 147.60, 23),
+(2, 'Czapka zimowa', 'Ciepla czapka z dzianiny z pomponem', 15.00, 18.45, 30.00, 36.90, 23),
+(2, 'Szalik', 'Welniany szalik zimowy', 20.00, 24.60, 40.00, 49.20, 23),
+(3, 'Rekawiczki skorzane', 'Rekawiczki zimowe', 18.00, 22.14, 35.00, 43.05, 23),
+(4, 'Pasek skorzany', 'Pasek do spodni ze skory naturalnej', 40.00, 49.20, 80.00, 98.40, 23);
+
+INSERT INTO Klienci(imie,nazwisko,adres)
+VALUES
+('Jerzy','Bucik','Olesnica'),
+('Anna','Guzik','Wroclaw'),
+('Piotr','Nowak','Wroclaw'),
+('Pawel','Wojcik','Wroclaw'),
+('Marek','Krawiec','Wroclaw'),
+('Ewa', 'Kapec','Olesnica'),
+('Tomasz','Krotki','Olesnica'),
+('Marta','Biret','Wroclaw'),
+('Piotr','Krolik','Wroclaw'),
+('Hiacynta','Bukiet','Olesnica');
+
+INSERT INTO Zamowienia (id_klienta, id_produktu, data_zamowienia)
+VALUES 
+(3, 12, '2026-04-20'),
+(7, 5,  '2026-04-20'),
+(1, 18, '2026-04-19'),
+(9, 2,  '2026-04-22'),
+(4, 14, '2026-04-18'),
+(10, 7, '2026-04-23'),
+(6, 20, '2026-04-23'),
+(2, 9,  '2026-04-20'),
+(8, 1,  '2026-04-14'),
+(5, 16, '2026-04-25');
+
+SELECT Produkty.* FROM Produkty
+JOIN Producenci ON Produkty.id_producenta=Producenci.id_producenta
+WHERE Producenci.id_producenta=1
+ORDER BY nazwa_produktu;
+
+SELECT AVG(cena_brutto_zakupu) FROM Produkty
+WHERE id_producenta=1;
+
+SELECT id_produktu,cena_brutto_zakupu,
+CASE
+WHEN cena_brutto_zakupu<35 THEN 'TANIE'
+WHEN cena_brutto_zakupu>35 THEN 'DROGIE'
+END AS 'TANIE/DROGIE'
+FROM Produkty;
+
+SELECT nazwa_produktu FROM Produkty
+JOIN Zamowienia ON Produkty.id_produktu=Zamowienia.id_produktu;
+
+SELECT nazwa_produktu FROM Produkty
+JOIN Zamowienia ON Produkty.id_produktu=Zamowienia.id_produktu;
+LIMIT 5;
+
+SELECT SUM(cena_brutto_sprzedazy) FROM Produkty
+JOIN Zamowienia ON Produkty.id_produktu=Zamowienia.id_produktu;
+
+SELECT id_zamowienia,nazwa_produktu,data_zamowienia FROM Zamowienia
+JOIN Produkty ON Zamowienia.id_produktu=Produkty.id_produktu
+ORDER BY data_zamowienia;
+
+SELECT * FROM Produkty
+WHERE
+id_produktu IS NULL OR
+id_producenta IS NULL OR
+nazwa_produktu IS NULL OR
+opis_produktu IS NULL OR
+cena_netto_zakupu IS NULL OR
+cena_brutto_zakupu IS NULL OR
+cena_netto_sprzedazy IS NULL OR
+cena_brutto_sprzedazy IS NULL OR
+procent_VAT  IS NULL;
+
+SELECT Zamowienia.id_zamowienia, Produkty.nazwa_produktu, Produkty.cena_brutto_sprzedazy FROM Produkty
+JOIN Zamowienia ON Produkty.id_produktu=Zamowienia.id_produktu
+LIMIT 1;
+
+SELECT data_zamowienia, COUNT(*) AS liczba_zamowien
+FROM Zamowienia
+GROUP BY data_zamowienia
+ORDER BY liczba_zamowien DESC
+LIMIT 1;
